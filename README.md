@@ -1,6 +1,6 @@
 
 # termaudio v0.2
-A lightweight YouTube audio player for your terminal.
+A lightweight YouTube audio player for the linux terminal.
 
 ## Install
 ### Debian Install
