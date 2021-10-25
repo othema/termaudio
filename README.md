@@ -1,5 +1,5 @@
 
-# termaudio
+# termaudio v0.2
 A lightweight YouTube audio player for your terminal.
 
 ## Install
