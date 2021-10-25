@@ -14,6 +14,7 @@ A lightweight YouTube audio player for your terminal.
 * `termcolor` for printing colored text to the terminal 
 * `art` for printing ASCII art to the terminal
 * `youtube-search-python` for searching YouTube's api
+* `python-mpv` for interacting with `libmpv`
 
 ## Usage
 * `?` show the help menu
