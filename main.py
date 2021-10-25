@@ -24,7 +24,7 @@ def main(argv):
 
 	# command loop
 	while True:
-		action = input(colored("termaudio (? for help)", "grey", "on_white") + " ")
+		action = input(colored("termaudio (? for help)", "grey", "on_white") + " ").strip()
 
 		try:
 			if action.startswith("/"):
