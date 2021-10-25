@@ -24,4 +24,4 @@ A lightweight YouTube audio player for the linux terminal.
 * `?resume` resume the paused video
 * `?volume` displays the current volume
 * `?volume [percent]` sets the volume of the video (max. 200)
-* `seek [h]:[m]:[s] seeks playback to specified time`
+* `seek [h]:[m]:[s]` seeks playback to specified time
