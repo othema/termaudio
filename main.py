@@ -150,7 +150,7 @@ def main(argv):
 			print(colored("error", "red") + ": there was an error.\n")
 	
 	
-def	search_query(query):
+def search_query(query):
 	search = VideosSearch(query, limit=1)
 	return search.result()["result"][0]
 
