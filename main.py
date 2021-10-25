@@ -15,7 +15,7 @@ def main(argv):
 	print(colored(text2art("termaudio"), "red"))
 	print("creator: Daniel George")
 	print("version: v0.2")
-	print("date of release: null")
+	print("date of release: 25 Oct 2021")
 	print("platform: " + platform.platform())
 	print("\n")
 
@@ -44,6 +44,7 @@ def main(argv):
 				else:
 					player = mpv.MPV(ytdl=True, video=False)
 				player.play(url)
+				player.pause = False
 				
 				while player.core_idle:
 					time.sleep(0.1)
@@ -66,7 +67,7 @@ def main(argv):
 	
 				else:
 					if player is not None:
-						if player.core_idle:
+						if player.core_idle and not player.pause:
 							search = None
 							player.stop()
 	
