@@ -21,6 +21,8 @@ def main(argv):
 
 	player = None
 	search = None
+	loop = False
+	volume = 100
 
 	# command loop
 	while True:
@@ -45,6 +47,8 @@ def main(argv):
 					player = mpv.MPV(ytdl=True, video=False)
 				player.play(url)
 				player.pause = False
+				player.volume = volume
+				player.loop = loop
 				
 				while player.core_idle:
 					time.sleep(0.1)
@@ -62,14 +66,44 @@ def main(argv):
 					print("?stop              stop/pause the current video")
 					print("?resume            resume the paused video")
 					print("?volume            gets the current volume")
-					print("?volume [percent]  sets the volume of the video (max. 200)")
-					print("?seek [h]:[m]:[s]  seeks playback to specified time\n")
+					print("?volume [percent]  sets the volume of the video (max. 500)")
+					print("?seek [h]:[m]:[s]  seeks playback to specified time")
+					print("?loop              cycle loop mode")
+
+					print()
 	
 				else:
 					if player is not None:
 						if player.core_idle and not player.pause:
 							search = None
 							player.stop()
+					
+					if command.startswith("volume"):
+						split = command.split(" ")
+						no_spaces = [value for value in split if value != " "]
+	
+						if len(no_spaces) == 1:
+							# they are getting the volume, not setting it
+							print(colored("volume", "red") + ": " + str(int(player.volume)) + "\n")
+							continue
+	
+						# no_spaces[0] is 'volume' and no_spaces[1] is volume percentage
+						vol = int(no_spaces[1])
+						if vol >= 0 and vol <= 500:
+							volume = vol
+							try: player.volume = vol
+							except AttributeError: pass
+						else:
+							error("invalid volume.\n")
+						
+						continue
+					elif command == "loop":
+						loop = not loop
+						try: player.loop = loop
+						except AttributeError: pass
+						print(colored("loop mode", "red") + ": " + (colored("on", "green") if loop else colored("off", "yellow")) + ".\n")
+						continue
+					
 	
 					if search is None:
 						error("no audio is being played right now.\n")
@@ -96,22 +130,6 @@ def main(argv):
 							print(colored("type", "red") + ": livestream")
 			
 						print()
-	
-					elif command.startswith("volume"):
-						split = command.split(" ")
-						no_spaces = [value for value in split if value != " "]
-	
-						if len(no_spaces) == 1:
-							# they are getting the volume, not setting it
-							print(colored("volume", "red") + ": " + str(int(player.volume)) + "\n")
-							continue
-	
-						# no_spaces[0] is 'volume' and no_spaces[1] is volume percentage
-						volume = int(no_spaces[1])
-						if volume >= 0 and volume <= 200:
-							player.volume = volume
-						else:
-							error("invalid volume.\n")
 	
 					elif command.startswith("seek"):
 						split = command.split(" ")
@@ -146,9 +164,15 @@ def main(argv):
 				
 			else:
 				error("unknown action " + colored(action, "yellow") + ".\n")
-		except:
+		except Exception as e:
 			# for any unhandled exceptions, we dont want the program to quit
-			print(colored("error", "red") + ": there was an error.\n")
+			print(colored("error", "red") + ": there was an error.")
+
+			if input("type " + colored("e", "yellow") + " to see the message. ") == "e":
+				print()
+				error(str(e))
+
+			print()
 	
 	
 def search_query(query):
