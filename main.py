@@ -15,8 +15,6 @@ player = None  # type: mpv.MPV
 def main(argv):
     global search
 
-    os.system("title termaudio")
-
     print(colored(text2art("termaudio"), "red"))
     print("creator: Daniel George")
     print("version: v0.3")
