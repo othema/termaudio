@@ -26,6 +26,7 @@ A lightweight YouTube audio player for the linux terminal.
 ## Usage
 * `?` show the help menu
 * `/[query]` search YouTube for a query
+* `/[query]` search YouTube for a query and choose a video from the results
 * `?current` show current video and attributes
 * `?stop` stop/pause the current video
 * `?resume` resume the paused video
