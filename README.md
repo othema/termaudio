@@ -4,15 +4,15 @@ A lightweight YouTube audio player for the linux terminal.
 
 ## Install
 ### Ubuntu/Debian Install
-#### Portable Install
-* Go to the [releases](https://github.com/othema/termaudio/releases/latest) tab and download the binary file (called `termaudio`).
-* Open a terminal and enter `./termaudio`. Termaudio will then open.
 #### Installer (Recommended)
  * Open a terminal and enter enter these commands:
  ```bash
  wget https://github.com/othema/termaudio/releases/latest/download/termaudio.deb
  sudo dpkg -i termaudio.deb
  ```
+#### Portable Install
+* Go to the [releases](https://github.com/othema/termaudio/releases/latest) tab and download the binary file (called `termaudio`).
+* Open a terminal and enter `./termaudio`. Termaudio will then open.
 
 ## Runtime Dependencies
 * `mpv` for streaming through `youtube-dl`
