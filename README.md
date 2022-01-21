@@ -1,6 +1,6 @@
 
 # termaudio
-A lightweight YouTube audio player for the linux terminal.
+A simple YouTube audio player for the linux terminal.
 
 ## Install
 ### Ubuntu/Debian Install
